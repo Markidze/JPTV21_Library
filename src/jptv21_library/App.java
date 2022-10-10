@@ -5,13 +5,25 @@
  */
 package jptv21_library;
 
+import entity.Author;
+import entity.Book;
+import java.util.Arrays;
 import java.util.Scanner;
+import managers.BookManager;
 
 /**
  *
  * @author pupil
  */
 public class App {
+    private Book[] books;
+    private final BookManager bookManager;
+
+    public App() {
+        this.books = new Book[0];
+        bookManager = new BookManager();
+    }
+    
     public void run() {
         boolean repeat = true;
         Scanner scanner = new Scanner(System.in);
@@ -23,18 +35,20 @@ public class App {
            System.out.println("3.Выдать книгу");
            System.out.println("4.Вернуть книгу");
            System.out.println("5.Список книг");
+           System.out.println("6.Редактор книг");
            System.out.print("Выберите номер задачи:");
            int task = scanner.nextInt();
            scanner.nextLine();
-            System.out.println("_________________");
+           System.out.println("_________________");
            switch(task) {
-               case 0:
+                case 0:
                    repeat = false;
+                   System.out.println("2. Закрыть приложение");
                    break;
                 case 1:
-                   System.out.println("1.");
-                default:
                    System.out.println("1.Добавить книгу");
+                   this.books = Arrays.copyOf(this.books, this.books.length+1);
+                   this.books[this.books.length-1] = bookManager.createBook();
                    break;
                 case 2:
                    System.out.println("2.Добавить читателя");
@@ -47,11 +61,14 @@ public class App {
                     break;
                 case 5:
                     System.out.println("5.Список книг");
+                    bookManager.printListBooks(books);
                     break;
-                 
-           }  
-            System.out.println("================-----------------===============");
+                default:
+                    System.out.println("Выберите задачу из списка");
+             
+           }
+            System.out.println("================-----------------================");
         }while(repeat);
         System.out.println("До свидания!");
-    }
+        }
 }
