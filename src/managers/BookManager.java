@@ -37,7 +37,7 @@ public class BookManager {
             Author author = new Author();
             System.out.print("Имя автора"+(i+1)+ ":" );
             author.setFirstname(scanner.nextLine());
-            System.out.print("Имя автора"+(i+1)+ ":" );
+            System.out.print("Фамилия автора"+(i+1)+ ":" );
             author.setLastname(scanner.nextLine());
             authors[i] = author;
         }    
@@ -48,7 +48,7 @@ public class BookManager {
         for (int i = 0; i < books.length; i++){
             Book book = books[i];
                         System.out.printf(i+1+". Book{title = %s%n", book.getTitle());
-                        System.out.print("\tAuthors = [\n\t\t");
+                        System.out.print("Authors = [\n\t\t");
                         for (int j = 0; j < book.getAuthors().length; j++) {
                             Author author = book.getAuthors()[j];
                             System.out.printf("Author = [%s %s%n"

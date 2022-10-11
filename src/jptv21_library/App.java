@@ -8,7 +8,9 @@ package jptv21_library;
 import entity.Author;
 import entity.Book;
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.Scanner;
+import java.util.Set;
 import managers.BookManager;
 
 /**
@@ -20,7 +22,7 @@ public class App {
     private final BookManager bookManager;
 
     public App() {
-        this.books = new Book[0];
+        testAddBook();
         bookManager = new BookManager();
     }
     
@@ -39,7 +41,8 @@ public class App {
            System.out.print("Выберите номер задачи:");
            int task = scanner.nextInt();
            scanner.nextLine();
-           System.out.println("_________________");
+           System.out.println("____________________________"
+                 + "_____________________");
            switch(task) {
                 case 0:
                    repeat = false;
@@ -63,6 +66,12 @@ public class App {
                     System.out.println("5.Список книг");
                     bookManager.printListBooks(books);
                     break;
+                case 6:
+                    System.out.println("6.Редактор книг");
+                    System.out.println("Список книг");
+                    bookManager.printListBooks(books);
+                    break;
+                
                 default:
                     System.out.println("Выберите задачу из списка");
              
@@ -70,5 +79,18 @@ public class App {
             System.out.println("================-----------------================");
         }while(repeat);
         System.out.println("До свидания!");
+    }
+     private void testAddBook(){ 
+        this.books = new Book[0];
+        Book book = new Book();
+        book.setTitle("Book for editing");
+        Author author = new Author();
+        author.setFirstname("firstname");
+        author.setLastname("lastname");
+        Author[] bookAuthors = new Author[1];
+        bookAuthors[0] = author;
+        book.setAuthors(bookAuthors);
+        this.books = Arrays.copyOf(this.books, this.books.length+1);
+        this.books[this.books.length-1] = book;
         }
 }
